@@ -1,0 +1,3 @@
+- DownLoad java client: https://mvnrepository.com/artifact/io.appium/java-client/7.5.1
+- DownLoad selenium java client: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/3.141.59
+- 
