@@ -1,18 +1,22 @@
-package lesson_14;
+package driver;
 
 import caps.MobileCapabilityTypeEx;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class DriverFactorySample {
     private static AppiumDriverLocalService appiumServer;
     private static AndroidDriver<MobileElement> androidDriver;
+
 
     public static void startAppiumServer(){
         //Khởi tạo appium server > dùng Appium Builder
@@ -53,5 +57,4 @@ public class DriverFactorySample {
         androidDriver.manage().timeouts().implicitlyWait(30L, TimeUnit.SECONDS);
         return androidDriver;
     }
-
 }
