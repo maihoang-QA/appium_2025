@@ -6,6 +6,8 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
+import io.appium.java_client.service.local.flags.ServerArgument;
+import lesson_16.AndroidServerFlagEx;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.IOException;
@@ -21,6 +23,7 @@ public class DriverFactorySample {
     public static void startAppiumServer(){
         //Khởi tạo appium server > dùng Appium Builder
         AppiumServiceBuilder appiumServiceBuilder = new AppiumServiceBuilder();
+        appiumServiceBuilder.withArgument(AndroidServerFlagEx.ALLOW_INSECURE,"chromedriver_autodownload");
         //usingAnyFreePort: ko chỉ định cái port nào hết có cái port nào nó tìm dc nó sẽ khởi ta
         appiumServiceBuilder.withIPAddress("127.0.0.1").usingPort(4725)
                 .withArgument(() -> "--base-path", "wd/hub");;
@@ -51,6 +54,11 @@ public class DriverFactorySample {
         desiredCapabilities.setCapability(MobileCapabilityTypeEx.UDID, "emulator-5554");
         desiredCapabilities.setCapability(MobileCapabilityTypeEx.APP_PACKAGE, "com.wdiodemoapp");
         desiredCapabilities.setCapability(MobileCapabilityTypeEx.APP_ACTIVITY, "com.wdiodemoapp.MainActivity");
+//        desiredCapabilities.setCapability("noReset", true);
+//        desiredCapabilities.setCapability("fullReset", false);
+        desiredCapabilities.setCapability("noReset", true);
+        desiredCapabilities.setCapability("fullReset", false);
+        //Nếu trong khoảng 120 giây mà Appium không nhận được lệnh nào từ driver, nó sẽ tự động đóng session.
         desiredCapabilities.setCapability(MobileCapabilityTypeEx.NEW_COMMAND_TIMEOUT, 120);
 
         androidDriver = new AndroidDriver<>(appiumServer.getUrl(), desiredCapabilities);
