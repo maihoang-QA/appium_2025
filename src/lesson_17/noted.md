@@ -1,0 +1,2 @@
+- resource-id ở inspector xuống appium là By.id
+- contend-desc ở inspector xuống appium là AccessBilityId
